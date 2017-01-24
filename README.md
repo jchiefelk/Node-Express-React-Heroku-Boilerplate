@@ -43,7 +43,7 @@ Create Heroku app
 </p>
 
 <pre>
-heroku apps:create Node-Express-React-Heroku-Boilerplate
+heroku apps:create node-express-react-flux  
 </pre>
 
 <p>
@@ -59,4 +59,4 @@ If everything is successfull, Heroku will deploy your Node.js app to https://you
 </p>
 
 <p>
-We're currently deployed at <a href="https://cointelmob.herokuapp.com"> https://cointelmob.herokuapp.com </a> </p>
+We're currently deployed at <a href="https://node-express-react-flux.herokuapp.com/"> https://node-express-react-flux.herokuapp.com/ </a> </p>
