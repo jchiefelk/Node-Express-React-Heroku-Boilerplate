@@ -30,8 +30,6 @@ npm start
 <p>To run your app you will need to create a Procfile plus a Git.  To learn more about Deploying with Git on Heroku, peep this usefull guide <a href="https://devcenter.heroku.com/articles/git#deploying-code">here.</a>  I've already provided a Procfile
 </p>
 
-
-
 <p>
 Login to Heroku, 
 </p>
