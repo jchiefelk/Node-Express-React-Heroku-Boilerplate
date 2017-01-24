@@ -22,3 +22,43 @@ npm start
 </pre>
 
 <p>The dev mode can then be viewed at <a href="http://localhost:3000"/> http://localhost:3000 </a> </p>
+
+<h4>Deploying to Heroku</h4>
+
+<p>To deploy your app to Heroku, go <a href="https://devcenter.heroku.com/articles/heroku-cli">here</a>, for Heroku Cli download instructions.</p>
+
+<p>To run your app you will need to create a Procfile plus a Git.  To learn more about Deploying with Git on Heroku, peep this usefull guide <a href="https://devcenter.heroku.com/articles/git#deploying-code">here.</a>  I've already provided a Procfile
+</p>
+
+
+
+<p>
+Login to Heroku, 
+</p>
+
+<pre>
+heroku login
+</pre>
+
+<p>
+Create Heroku app
+</p>
+
+<pre>
+heroku apps:create your-app-name
+</pre>
+
+<p>
+Push to Heroku
+</p>
+
+<pre>
+git push heroku master
+</pre>
+
+<p>
+If everything is successfull, Heroku will deploy your Node.js app to https://your-app-name.herokuapp.com
+</p>
+
+<p>
+We're currently deployed at <a href="https://cointelmob.herokuapp.com"> https://cointelmob.herokuapp.com </a> </p>
