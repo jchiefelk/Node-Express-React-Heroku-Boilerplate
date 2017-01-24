@@ -43,7 +43,7 @@ Create Heroku app
 </p>
 
 <pre>
-heroku apps:create node-express-react-flux  
+heroku apps:create your-app-name  
 </pre>
 
 <p>
