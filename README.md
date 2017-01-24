@@ -45,7 +45,7 @@ Create Heroku app
 </p>
 
 <pre>
-heroku apps:create your-app-name
+heroku apps:create Node-Express-React-Heroku-Boilerplate
 </pre>
 
 <p>
