@@ -10,7 +10,6 @@ const Routes = (props) => (
     <Route path="/" component={App} />
     <Route path="/about" component={About} />
     <Route path="/publishing" component={Publishing} />
-    <Route path="/articlepage"	component={ArticlePage} />
   </Router>
 );
 export default Routes;

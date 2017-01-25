@@ -21531,8 +21531,7 @@
 	    props,
 	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _App2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/publishing', component: _publishing2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/articlepage', component: _articlepage2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/publishing', component: _publishing2.default })
 	  );
 	};
 	exports.default = Routes;
@@ -26624,25 +26623,25 @@
 	                _react2.default.createElement(
 	                    'h1',
 	                    { style: { marginTop: 30, marginBottom: 10 } },
-	                    'CointelMOB Dev Hub'
+	                    'Dev Hub'
+	                ),
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'Tutorials coming soon'
 	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { style: { display: 'flex', flexDirection: 'column' } },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { to: '/articlepage', style: { textDecoration: 'none', marginTop: 5 } },
-	                        'Article Page'
+	                        { to: '/about', style: { textDecoration: 'none', marginTop: 5 } },
+	                        'About'
 	                    ),
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
 	                        { to: '/publishing', style: { textDecoration: 'none', marginTop: 5 } },
-	                        'Publishing'
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/about', style: { textDecoration: 'none', marginTop: 5 } },
-	                        'About'
+	                        'Publishing Form'
 	                    )
 	                )
 	            );
@@ -78385,7 +78384,7 @@
 					_react2.default.createElement(
 						_reactRouter.Link,
 						{ to: '/', style: { fontSize: 18, color: 'white', position: 'absolute', top: 15, left: 25, cursor: 'pointer', textDecoration: 'none' } },
-						'Cointelmob'
+						'Node.js Boilerplate for Heroku Deployment'
 					),
 					_react2.default.createElement(
 						_reactRouter.Link,

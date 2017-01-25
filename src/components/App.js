@@ -11,11 +11,11 @@ class App extends Component {
         return(
         	<div style={{alignItems: 'center'}}> 
         		<Header/>
-        		<h1 style={{marginTop: 30, marginBottom: 10}}>CointelMOB Dev Hub</h1>
+        		<h1 style={{marginTop: 30, marginBottom: 10}}>Dev Hub</h1>
+                <h2>Tutorials coming soon</h2>
         		<div style={{display: 'flex', flexDirection: 'column'}}>
-	        		<Link to="/articlepage" style={{textDecoration: 'none', marginTop: 5}}>Article Page</Link>
-	        		<Link to="/publishing" style={{textDecoration: 'none', marginTop: 5}}>Publishing</Link>
-	        		<Link to="/about" style={{textDecoration: 'none', marginTop: 5}}>About</Link>
+                    <Link to="/about" style={{textDecoration: 'none', marginTop: 5}}>About</Link> 
+	        		<Link to="/publishing" style={{textDecoration: 'none', marginTop: 5}}>Publishing Form</Link>
         		</div>
         	</div>
         );

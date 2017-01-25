@@ -28,8 +28,8 @@
     "webpack": "^1.14.0"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "production_start": "node server/app.js",
-    "start": "node server/app.js"
+ 
+      "build": "webpack --config webpack.config.js",
+      "start": "node server/app.js"
   }
 }
