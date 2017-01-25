@@ -12,16 +12,15 @@ class App extends Component {
         return(
         	<div style={{alignItems: 'center'}}> 
         		<Header/>
-       
-                <VideoBackground/>
 
-        		<div style={{display: 'flex', flexDirection: 'column'}}>
-                    <Link to="/about" style={{textDecoration: 'none', marginTop: 5}}>About</Link> 
-	        		<Link to="/publishing" style={{textDecoration: 'none', marginTop: 5}}>Publishing Form</Link>
-        		</div>
+                <div style={{position: 'absolute'}}>
+                        <Link to="/about" style={{textDecoration: 'none', marginTop: 5}}>About</Link> 
+                        <Link to="/publishing" style={{textDecoration: 'none', marginTop: 5}}>Publishing Form</Link>
+                </div>
+
+                <VideoBackground/>
         	</div>
         );
     }
-
 }
 export default App;
