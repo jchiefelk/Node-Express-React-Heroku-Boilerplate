@@ -93796,9 +93796,9 @@
 
 							return _react2.default.createElement(
 									'video',
-									{ id: 'background-video', loop: true, autoPlay: true, muted: true, playsinline: true },
-									_react2.default.createElement('source', { src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4', type: 'video/mp4' }),
-									_react2.default.createElement('source', { src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4', type: 'video/ogg' })
+									{ id: 'background-video', loop: true, autoPlay: true, muted: true, playsInline: true },
+									_react2.default.createElement('source', { src: 'https://s3-us-west-1.amazonaws.com/cointelmob/backgroundVideos/StandingRockHorseRiders2.mp4', type: 'video/mp4' }),
+									_react2.default.createElement('source', { src: 'https://s3-us-west-1.amazonaws.com/cointelmob/backgroundVideos/StandinRockHorseRiders2.webm', type: 'video/webm' })
 							);
 					}
 			}]);
