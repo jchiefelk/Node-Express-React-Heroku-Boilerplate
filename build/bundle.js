@@ -26624,10 +26624,9 @@
 	                'div',
 	                { style: { alignItems: 'center' } },
 	                _react2.default.createElement(_header2.default, null),
-	                _react2.default.createElement(_videobackground2.default, null),
 	                _react2.default.createElement(
 	                    'div',
-	                    { style: { display: 'flex', flexDirection: 'column' } },
+	                    { style: { position: 'absolute' } },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
 	                        { to: '/about', style: { textDecoration: 'none', marginTop: 5 } },
@@ -26638,7 +26637,8 @@
 	                        { to: '/publishing', style: { textDecoration: 'none', marginTop: 5 } },
 	                        'Publishing Form'
 	                    )
-	                )
+	                ),
+	                _react2.default.createElement(_videobackground2.default, null)
 	            );
 	        }
 	    }]);
@@ -78389,7 +78389,7 @@
 					_react2.default.createElement(
 						_reactRouter.Link,
 						{ to: '/publishing', style: { fontSize: 18, color: 'white', position: 'absolute', right: window.innerWidth * 0.1, top: 15, cursor: 'pointer', textDecoration: 'none' } },
-						'Publish'
+						'Form'
 					)
 				);
 			}
@@ -93845,7 +93845,7 @@
 
 
 	// module
-	exports.push([module.id, "#background-video{\n\nheight: 100%;\nwidth: 100%;\nfloat: left;\ntop: 0;\npadding: none;\n\n\n\n}", ""]);
+	exports.push([module.id, "#background-video{\ndisplay: flex;\n// height: 100%;\nwidth: 100%;\nfloat: left;\ntop: 0;\npadding: none;\n}", ""]);
 
 	// exports
 
