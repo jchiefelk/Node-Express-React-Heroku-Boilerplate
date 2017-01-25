@@ -1,4 +1,3 @@
-<h1>Cointel M.O.B</h1> 
 <h4>Universal JavaScript boilerplate built with Express.js, Node.js, React.js, MySQL, React-Router, and bundled with Webpack</h4>
 
 <p>Built using the server-client model; The back-end is handled on a server, while the front-end is rendered on the client. A quality explanation on the differences between rendering the front-end on a server, versus on the client-side, plus the pros and cons of each, is given <a href="https://spin.atomicobject.com/2015/04/06/web-app-client-side-server-side"/>here.</a>
@@ -23,3 +22,41 @@ npm start
 </pre>
 
 <p>The dev mode can then be viewed at <a href="http://localhost:3000"/> http://localhost:3000 </a> </p>
+
+<h4>Deploying to Heroku</h4>
+
+<p>To deploy your app to Heroku, go <a href="https://devcenter.heroku.com/articles/heroku-cli">here</a>, for Heroku Cli download instructions.</p>
+
+<p>To run your app you will need to create a Procfile plus a Git.  To learn more about Deploying with Git on Heroku, peep this usefull guide <a href="https://devcenter.heroku.com/articles/git#deploying-code">here.</a>  I've already provided a Procfile
+</p>
+
+<p>
+Login to Heroku, 
+</p>
+
+<pre>
+heroku login
+</pre>
+
+<p>
+Create Heroku app
+</p>
+
+<pre>
+heroku apps:create your-app-name  
+</pre>
+
+<p>
+Push to Heroku
+</p>
+
+<pre>
+git push heroku master
+</pre>
+
+<p>
+If everything is successfull, Heroku will deploy your Node.js app to https://your-app-name.herokuapp.com
+</p>
+
+<p>
+We're currently deployed at <a href="https://node-express-react-flux.herokuapp.com/"> https://node-express-react-flux.herokuapp.com/ </a> </p>
