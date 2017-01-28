@@ -78430,7 +78430,7 @@
 					),
 					_react2.default.createElement(
 						_reactRouter.Link,
-						{ to: '/publishing/secret=06011873nakoda', style: { fontWeight: '900', fontFamily: 'Courier New', fontSize: 18, color: 'white', position: 'absolute', right: window.innerWidth * 0.1, top: 15, cursor: 'pointer', textDecoration: 'none' } },
+						{ to: '/publishing/secret=06011873nako', style: { fontWeight: '900', fontFamily: 'Courier New', fontSize: 18, color: 'white', position: 'absolute', right: window.innerWidth * 0.1, top: 15, cursor: 'pointer', textDecoration: 'none' } },
 						'Form'
 					)
 				);
