@@ -1,21 +1,23 @@
 // server/app.js
+var bodyParser = require('body-parser');
 var DatabaseTools = require('../modules/databasetools');
+var config = require('../modules/config');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const router = express.Router();
 const app = express();
 let _store;
-
-app.set('port', (process.env.PORT || 3000));
-app.use(express.static(path.resolve(__dirname, '..', 'build')));
-
-
 let authenticate = ( payload, expressResponse ) => {
-
+    payload.secret='';
+    for(var x = payload.origin.length+19; x<payload.referer.length;x++) {
+        payload.secret += payload.referer.charAt(x);
+    };
     return new Promise( ( resolve, reject ) => {
+
         let expectedPassword = config.development.expectedPassword;
-        if( payload.secret !== undefined && payload.secret == expectedPassword ) {
+        if( payload.secret == expectedPassword ) {
+            
             resolve();
         }
         else{
@@ -23,7 +25,6 @@ let authenticate = ( payload, expressResponse ) => {
         }
     });
 };
-//--CORS-- Allow cross origin and CORS preflight requests...
 var allowCrossDomain = function(req, res, next) {
         res.header( 'Access-Control-Allow-Origin', '*' );
         res.header( 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS' );
@@ -36,21 +37,25 @@ var allowCrossDomain = function(req, res, next) {
             next();
         }
 };
-
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+// parse application/json
+app.use(bodyParser.json());
+app.set('port', (process.env.PORT || 3000));
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.get('/api', (req, res, next) => {	
 		authenticate( req.headers, res )
     	.then( () => {
-  				DatabaseTools.getPendingArticleData();
+  				DatabaseTools.getPendingArticleData(_store);
   		})
  		.catch( () => res.status( 500 ).json( { error: "auth fail" } ) );
 
 });
-
-
 app.post('/api', (req, res, next) => {
-	_store = req.body;
+
     authenticate( req.headers, res )
         .then(() => {
+            _store = req.body;
             DatabaseTools.postPendingArticle(_store);
         })
         .catch( () => res.status( 500 ).json( { error: "auth fail" } ) );

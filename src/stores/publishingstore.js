@@ -12,7 +12,7 @@ var _store = {
   article: null,
   submissiondate: moment().format('YYYY-MM-DD'),
   httpstatus: 'null',
-
+  status: null
 };
 var updateStatus = function(item) {
   _store.httpstatus = item;

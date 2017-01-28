@@ -9,21 +9,6 @@ var _store = {
   article: null,
   submissiondate: null
 };
-var getSecret = function(){
-    let urlParams = new URLSearchParams(window.location.search);
-    if( urlParams.has( 'secret' ) ){
-        return urlParams.get( 'secret' );
-    }
-    return null;
-};
-var addSecretToObjectIfAvailable = function( object ){
-    let secret = getSecret();
-    if( secret !== null ){
-        object.secret = secret;
-        return true;
-    }
-    return false;
-};
 var makeGETRequest = function() {
      console.log('Get Engage');
      fetch('/api', {
@@ -40,15 +25,13 @@ var makeGETRequest = function() {
         }); 
 };
 var makePOSTRequest = function(){
-    let payload = _store;
-    addSecretToObjectIfAvailable( payload );
     fetch('/api', {
               method: 'POST',
               headers: {
                   'Accept': 'application/json',
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
               },
-              body: JSON.stringify(payload)
+              body: JSON.stringify(_store)
             })
             .then( (response) => {
                   if(response.status!=undefined){
@@ -73,6 +56,7 @@ var Actions = {
       data: item 
     });
   },
+  
   SaveClick: function(event){
 
     AppDispatcher.handleAction({

@@ -57,18 +57,20 @@ class Publishing extends Component {
 		if(this.state.httpstatus==500){
 			alert('Internal Server Error 500: Improper Format in One of Responses');
 		}	
+
+		
 	}
 	componentDidUpdate(){
-		/**
-		if(this.state.saved==true && this.state.article_store_data==null){
+		
+		if(this.state.saved==true && this.state.message!=null){
 			this.setState({saved: false});
-			alert('Something is Null');
-		} else {
-			this.setState({saved: false});
-			// Actions.postToPending(this.state.article_store_data);
 		}
-		**/
 
+		if(this.state.saved==true && this.state.message==null){
+			this.setState({saved: false});
+			Actions.postToPending(this.state.article_store_data);
+		}
+		
 	}
 
     render() {

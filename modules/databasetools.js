@@ -34,8 +34,9 @@ var getPendingArticles = function(){
 
 var postToPending = function(){
   return new Promise(function(resolve,reject){
-      var Insert = ['Jackson','Chief Elk'];
-      var sql = 'insert into Pending set First_Name=?, Last_Name=?';
+      console.log(_store);
+      var Insert = [_store.firstname, _store.lastname, _store.subjects, _store.abstract, _store.article, _store.submissiondate];
+      var sql = 'insert into Pending set First_Name=?, Last_Name=?, Abstract=?, Article=?, Subjects=?';
       connect.query(sql,Insert,function(err, rows) {
       	  console.log(rows);
           if (err) {
@@ -53,7 +54,7 @@ class DatabaseTools {
 		getPendingArticles();
 	}
 	postPendingArticle(item){
-		console.log(item);
+    _store = item;
 		postToPending();
 	}
 }

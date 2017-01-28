@@ -9,7 +9,7 @@ const Routes = (props) => (
   <Router {...props}>
     <Route path="/" component={App} />
     <Route path="/about" component={About} />
-    <Route path="/publishing" component={Publishing} />
+    <Route path="/publishing/:secret" component={Publishing} />
   </Router>
 );
 export default Routes;
