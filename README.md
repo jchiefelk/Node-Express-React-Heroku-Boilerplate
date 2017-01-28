@@ -1,7 +1,12 @@
 <h2>Form template that uses SQL-Injetection Protection plus Shared-Secret Authentication</h2>
 
-<h3>Stack</h3>
+<p>SQL Injection is one of the oldest, simplest, and most common attack strategy.  It can be protected fairly simply using Prepared Statements, but sometimes in the dev process that gets forgotten in the build process, for whatever reason.</p>
 
+<p>Shared-Secret Authentication is the easiest auth protocol to implement, essentially a userspassword is put in url parameter, which then allows for Read or Write access to a particular end point.  My stack uses React-Router to manage routing, so url parameters have to be handled a little differently </p>
+
+<p>Go here for a tutorial on how to implement both security protocols.  <a href="https://node-express-react-flux.herokuapp.com/"> https://node-express-react-flux.herokuapp.com/ </a></p>
+
+<h3>Stack</h3>
 
 <h4>Universal JavaScript boilerplate built with Express.js, Node.js, React.js, MySQL, React-Router, and bundled with Webpack</h4>
 
