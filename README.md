@@ -1,4 +1,4 @@
-<h2>Standard Form template that uses SQL-Injetcion Protection plus Shared-Secret Authentication</h2>
+<h2>Form template that uses SQL-Injetection Protection plus Shared-Secret Authentication</h2>
 
 <h3>Stack</h3>
 
