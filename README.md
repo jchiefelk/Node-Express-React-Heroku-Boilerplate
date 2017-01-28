@@ -1,3 +1,8 @@
+<h2>Standard Form template that uses SQL-Injetcion Protection plus Shared-Secret Authentication</h2>
+
+<h3>Stack</h3>
+
+
 <h4>Universal JavaScript boilerplate built with Express.js, Node.js, React.js, MySQL, React-Router, and bundled with Webpack</h4>
 
 <p>Built using the server-client model; The back-end is handled on a server, while the front-end is rendered on the client. A quality explanation on the differences between rendering the front-end on a server, versus on the client-side, plus the pros and cons of each, is given <a href="https://spin.atomicobject.com/2015/04/06/web-app-client-side-server-side"/>here.</a>
