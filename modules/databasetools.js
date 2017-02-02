@@ -20,9 +20,8 @@ var connect = new Client({
 var getPendingArticles = function(){
   return new Promise(function(resolve,reject){
             var sql = 'select * from Pending';
-            var Header = ['100']; 
             connect.query(sql, function(err,rows){
-            	console.log(rows);
+            //	console.log(rows);
                   if (err) {
                       reject(err);
                   } else {
@@ -35,7 +34,7 @@ var getPendingArticles = function(){
 var postToPending = function(){
   return new Promise(function(resolve,reject){
       console.log(_store);
-      var Insert = [_store.firstname, _store.lastname, _store.subjects, _store.abstract, _store.article, _store.submissiondate];
+      var Insert = [_store.firstname, _store.lastname, _store.abstract, _store.article, _store.subjects];
       var sql = 'insert into Pending set First_Name=?, Last_Name=?, Abstract=?, Article=?, Subjects=?';
       connect.query(sql,Insert,function(err, rows) {
       	  console.log(rows);
@@ -50,8 +49,19 @@ var postToPending = function(){
 };
 
 class DatabaseTools {
+
 	getPendingArticleData() {
-		getPendingArticles();
+          return new Promise(function(resolve,reject){
+                    var sql = 'select * from Pending';
+                    connect.query(sql, function(err,rows){
+                    //  console.log(rows);
+                          if (err) {
+                              reject(err);
+                          } else {
+                              resolve(rows);
+                          }
+                    });
+          });
 	}
 	postPendingArticle(item){
     _store = item;

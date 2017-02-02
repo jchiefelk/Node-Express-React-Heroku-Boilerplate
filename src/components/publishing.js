@@ -60,17 +60,22 @@ class Publishing extends Component {
 
 		
 	}
+
+	_onClick(){
+		if(this.state.message!=null){
+			this.setState({message: null});
+			Actions.clearMessage();
+		}
+	}
+
 	componentDidUpdate(){
-		
 		if(this.state.saved==true && this.state.message!=null){
 			this.setState({saved: false});
 		}
-
 		if(this.state.saved==true && this.state.message==null){
 			this.setState({saved: false});
 			Actions.postToPending(this.state.article_store_data);
 		}
-		
 	}
 
     render() {
@@ -82,10 +87,10 @@ class Publishing extends Component {
            		</div>
 
            		<div style={{display: 'flex',flexDirection: 'column'}}>
-	            	<input style={Style.firstname} value={this.state.firstname} onChange={(e)=> this.editFirstName(e)}/>
-	            	<input style={Style.lastname} value={this.state.lastname} onChange={(e)=> this.editLastName(e)}/>
-	            	<input style={Style.subjects} value={this.state.subjects} onChange={(e)=> this.editSubject(e)}/>
-	                <textarea style={Style.abstract_container} value={this.state.abstract} onChange={(e)=> this.editAbstract(e)} />
+	            	<input style={Style.firstname} value={this.state.firstname} onChange={(e)=> this.editFirstName(e)} onClick={()=> this._onClick() }/>
+	            	<input style={Style.lastname} value={this.state.lastname} onChange={(e)=> this.editLastName(e)} onClick={()=> this._onClick() } />
+	            	<input style={Style.subjects} value={this.state.subjects} onChange={(e)=> this.editSubject(e)} onClick={()=> this._onClick() }/>
+	                <textarea style={Style.abstract_container} value={this.state.abstract} onChange={(e)=> this.editAbstract(e)} onClick={()=> this._onClick() }/>
                 </div>
                 <TextEditor placeholder="Article" styling={Style.article_container} />
                 <div style={Style.article_save} onClick={()=> this.saveData()}>

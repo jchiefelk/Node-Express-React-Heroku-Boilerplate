@@ -83,6 +83,9 @@ AppDispatcher.register(function(payload){
     case appConstants.SUBJECTS:
       setSubjects(action.data)
       break;
+    case appConstants.CLEAR_MESSAGE:
+      _store.status=null;
+      break;
     default:
       return true;
   }

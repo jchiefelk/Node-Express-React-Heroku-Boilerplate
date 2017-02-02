@@ -19,3 +19,11 @@
 	margin-top: 5;
 	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 }
+
+.table_row_parent { 
+	
+	border-width: 2; 
+	border-style: solid; 
+	display: flex;
+	flex-direction: column;
+}

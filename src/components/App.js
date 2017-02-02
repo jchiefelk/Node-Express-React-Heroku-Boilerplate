@@ -18,7 +18,6 @@ class App extends Component {
                     start1: false
                 };
     }
-
     componentDidMount(){
          TimerMixin.setTimeout(
           () => { 
@@ -31,7 +30,6 @@ class App extends Component {
           60
          );
     }
-
     componentDidUpdate(){
         if(this.state.start1===true) {
              TimerMixin.setTimeout(
@@ -51,8 +49,6 @@ class App extends Component {
             });
         }
     }
-
-
     render() {
         return(
         	<div style={{alignItems: 'center'}}> 

@@ -23,8 +23,9 @@ export default class Header extends Component {
 	render() {
 	    return (
 	      <div style={{display: 'flex', height: 50, backgroundColor: 'black', alignItems: 'center' }}>
-	      	<Link to="/" style={{fontWeight: '900',fontFamily: 'Courier New',fontSize: 18,color: 'white', position: 'absolute', top: 15,left: 25, cursor: 'pointer', textDecoration: 'none'  }}>Node.js Boilerplate for Heroku Deployment</Link>
-	      	<Link to="/publishing/secret=" style={{fontWeight: '900',fontFamily: 'Courier New',fontSize: 18,color: 'white', position: 'absolute', right: window.innerWidth*(0.1) , top: 15, cursor: 'pointer', textDecoration: 'none' }}>Form</Link>
+	      	<Link to="/" style={{fontWeight: '900',fontFamily: 'Courier New',fontSize: 18,color: 'white', position: 'absolute', top: 15,left: 25, cursor: 'pointer', textDecoration: 'none'  }}>Node.js Boilerplate for Heroku Deployment</Link>	
+	      	<Link to="/tableview/secret=06011873nakoda" style={{fontWeight: '900',fontFamily: 'Courier New',fontSize: 18,color: 'white', position: 'absolute', right: window.innerWidth*(0.2), top: 15, cursor: 'pointer', textDecoration: 'none' }}>Table View</Link>
+	      	<Link to="/publishing/secret=06011873nakoda" style={{fontWeight: '900',fontFamily: 'Courier New',fontSize: 18,color: 'white', position: 'absolute', right: window.innerWidth*(0.1) , top: 15, cursor: 'pointer', textDecoration: 'none' }}>Form</Link>
 	      </div>
 	    );
 	}

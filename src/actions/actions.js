@@ -18,13 +18,17 @@ var makeGETRequest = function() {
           if(response.status!=undefined){
               Actions.setStatus(response.status);
           }
+         // console.log(response.json());
           return response.json();
         }).then(function(data) {
+            Actions.updateTableContents(data);
         }).catch(function(error) {
           console.log(error);
         }); 
 };
+
 var makePOSTRequest = function(){
+    console.log(window.location);
     fetch('/api', {
               method: 'POST',
               headers: {
@@ -93,6 +97,24 @@ var Actions = {
       actionType: appConstants.ABSTRACT,
       data: item
     });
+  },
+
+  clearMessage: function(item){
+    AppDispatcher.handleAction({
+      actionType: appConstants.CLEAR_MESSAGE,
+      data: item
+    });
+  },
+
+  getTableContent: function(item){
+    makeGETRequest();
+  },
+
+  updateTableContents: function(item){
+      AppDispatcher.handleAction({
+          actionType: appConstants.UPDATE_TABLE_DATA,
+          data: item
+      });
   }
   
 };

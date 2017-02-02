@@ -8,6 +8,7 @@ const path = require('path');
 const router = express.Router();
 const app = express();
 let _store;
+
 let authenticate = ( payload, expressResponse ) => {
     payload.secret='';
     for(var x = payload.origin.length+19; x<payload.referer.length;x++) {
@@ -25,6 +26,7 @@ let authenticate = ( payload, expressResponse ) => {
         }
     });
 };
+
 var allowCrossDomain = function(req, res, next) {
         res.header( 'Access-Control-Allow-Origin', '*' );
         res.header( 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS' );
@@ -44,15 +46,18 @@ app.use(bodyParser.json());
 app.set('port', (process.env.PORT || 3000));
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.get('/api', (req, res, next) => {	
-		authenticate( req.headers, res )
-    	.then( () => {
-  				DatabaseTools.getPendingArticleData(_store);
-  		})
- 		.catch( () => res.status( 500 ).json( { error: "auth fail" } ) );
-
+  	DatabaseTools.getPendingArticleData()
+        .then(function(value){
+            console.log(value);  
+            res.json(value);          
+        })
+        .catch(function(error){
+            res.json({error: error})
+            console.log(error);
+            next(error);
+        });
 });
 app.post('/api', (req, res, next) => {
-
     authenticate( req.headers, res )
         .then(() => {
             _store = req.body;

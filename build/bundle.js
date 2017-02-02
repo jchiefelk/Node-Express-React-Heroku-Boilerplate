@@ -21530,6 +21530,10 @@
 
 	var _articlepage2 = _interopRequireDefault(_articlepage);
 
+	var _tableview = __webpack_require__(878);
+
+	var _tableview2 = _interopRequireDefault(_tableview);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Routes = function Routes(props) {
@@ -21538,6 +21542,7 @@
 	    props,
 	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _App2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/tableview/:secret', component: _tableview2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/publishing/:secret', component: _publishing2.default })
 	  );
 	};
@@ -26828,13 +26833,19 @@
 				}
 			}
 		}, {
+			key: '_onClick',
+			value: function _onClick() {
+				if (this.state.message != null) {
+					this.setState({ message: null });
+					Actions.clearMessage();
+				}
+			}
+		}, {
 			key: 'componentDidUpdate',
 			value: function componentDidUpdate() {
-
 				if (this.state.saved == true && this.state.message != null) {
 					this.setState({ saved: false });
 				}
-
 				if (this.state.saved == true && this.state.message == null) {
 					this.setState({ saved: false });
 					Actions.postToPending(this.state.article_store_data);
@@ -26863,15 +26874,23 @@
 						{ style: { display: 'flex', flexDirection: 'column' } },
 						_react2.default.createElement('input', { style: _style2.default.firstname, value: this.state.firstname, onChange: function onChange(e) {
 								return _this2.editFirstName(e);
+							}, onClick: function onClick() {
+								return _this2._onClick();
 							} }),
 						_react2.default.createElement('input', { style: _style2.default.lastname, value: this.state.lastname, onChange: function onChange(e) {
 								return _this2.editLastName(e);
+							}, onClick: function onClick() {
+								return _this2._onClick();
 							} }),
 						_react2.default.createElement('input', { style: _style2.default.subjects, value: this.state.subjects, onChange: function onChange(e) {
 								return _this2.editSubject(e);
+							}, onClick: function onClick() {
+								return _this2._onClick();
 							} }),
 						_react2.default.createElement('textarea', { style: _style2.default.abstract_container, value: this.state.abstract, onChange: function onChange(e) {
 								return _this2.editAbstract(e);
+							}, onClick: function onClick() {
+								return _this2._onClick();
 							} })
 					),
 					_react2.default.createElement(_texteditor2.default, { placeholder: 'Article', styling: _style2.default.article_container }),
@@ -27494,12 +27513,17 @@
 	    if (response.status != undefined) {
 	      Actions.setStatus(response.status);
 	    }
+	    // console.log(response.json());
 	    return response.json();
-	  }).then(function (data) {}).catch(function (error) {
+	  }).then(function (data) {
+	    Actions.updateTableContents(data);
+	  }).catch(function (error) {
 	    console.log(error);
 	  });
 	};
+
 	var makePOSTRequest = function makePOSTRequest() {
+	  console.log(window.location);
 	  fetch('/api', {
 	    method: 'POST',
 	    headers: {
@@ -27564,6 +27588,24 @@
 	  setAbstract: function setAbstract(item) {
 	    AppDispatcher.handleAction({
 	      actionType: appConstants.ABSTRACT,
+	      data: item
+	    });
+	  },
+
+	  clearMessage: function clearMessage(item) {
+	    AppDispatcher.handleAction({
+	      actionType: appConstants.CLEAR_MESSAGE,
+	      data: item
+	    });
+	  },
+
+	  getTableContent: function getTableContent(item) {
+	    makeGETRequest();
+	  },
+
+	  updateTableContents: function updateTableContents(item) {
+	    AppDispatcher.handleAction({
+	      actionType: appConstants.UPDATE_TABLE_DATA,
 	      data: item
 	    });
 	  }
@@ -27855,8 +27897,9 @@
 	  LASTNAME: "LASTNAME",
 	  SUBJECTS: "SUBJECTS",
 	  ABSTRACT: "ABSTRACT",
-	  ARTICLE: "ARTICLE"
-
+	  ARTICLE: "ARTICLE",
+	  CLEAR_MESSAGE: "CLEAR_MESSAGE",
+	  UPDATE_TABLE_DATA: "UPDATE_TABLE_DATA"
 	};
 	module.exports = appConstants;
 
@@ -78430,7 +78473,12 @@
 					),
 					_react2.default.createElement(
 						_reactRouter.Link,
-						{ to: '/publishing/secret=06011873nako', style: { fontWeight: '900', fontFamily: 'Courier New', fontSize: 18, color: 'white', position: 'absolute', right: window.innerWidth * 0.1, top: 15, cursor: 'pointer', textDecoration: 'none' } },
+						{ to: '/tableview/secret=06011873nakoda', style: { fontWeight: '900', fontFamily: 'Courier New', fontSize: 18, color: 'white', position: 'absolute', right: window.innerWidth * 0.2, top: 15, cursor: 'pointer', textDecoration: 'none' } },
+						'Table View'
+					),
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/publishing/secret=06011873nakoda', style: { fontWeight: '900', fontFamily: 'Courier New', fontSize: 18, color: 'white', position: 'absolute', right: window.innerWidth * 0.1, top: 15, cursor: 'pointer', textDecoration: 'none' } },
 						'Form'
 					)
 				);
@@ -78542,6 +78590,9 @@
 	      break;
 	    case appConstants.SUBJECTS:
 	      setSubjects(action.data);
+	      break;
+	    case appConstants.CLEAR_MESSAGE:
+	      _store.status = null;
 	      break;
 	    default:
 	      return true;
@@ -94025,7 +94076,7 @@
 
 
 	// module
-	exports.push([module.id, "#Title {\n\tfont-size: 6em;\n\tcolor: black;\n\tfont-weight: 700; \n\tfont-family: 'Courier New';\n\ttext-decoration: 'none';\n\tmargin-top: 5;\n\talign-text: center;\n\ttext-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;\n}\n\n#About-Me {\n\n\tcolor: black;\n\tfont-size: 3em;\n\tfont-weight: 700; \n\tfont-family: 'Courier New';\n\ttext-decoration: 'none';\n\tmargin-top: 5;\n\ttext-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;\n}\n", ""]);
+	exports.push([module.id, "#Title {\n\tfont-size: 6em;\n\tcolor: black;\n\tfont-weight: 700; \n\tfont-family: 'Courier New';\n\ttext-decoration: 'none';\n\tmargin-top: 5;\n\talign-text: center;\n\ttext-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;\n}\n\n#About-Me {\n\n\tcolor: black;\n\tfont-size: 3em;\n\tfont-weight: 700; \n\tfont-family: 'Courier New';\n\ttext-decoration: 'none';\n\tmargin-top: 5;\n\ttext-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;\n}\n\n.table_row_parent { \n\t\n\tborder-width: 2; \n\tborder-style: solid; \n\tdisplay: flex;\n\tflex-direction: column;\n}\n", ""]);
 
 	// exports
 
@@ -94260,101 +94311,45 @@
 
 /***/ },
 /* 625 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	/*****
-	var AppDispatcher = require('../dispatcher/AppDispatcher');
-	var appConstants = require('../constants/appConstants');
-	var objectAssign = require('object-assign');
-	var EventEmitter = require('events').EventEmitter;
+	'use strict';
+
+	var AppDispatcher = __webpack_require__(244);
+	var appConstants = __webpack_require__(247);
+	var objectAssign = __webpack_require__(4);
+	var EventEmitter = __webpack_require__(505).EventEmitter;
 	var CHANGE_EVENT = 'change';
-	var moment = require('moment'); 
-	var _store = {
-	  firstname: null,
-	  lastname: null,
-	  subjects: null,
-	  abstract: null,
-	  article: null,
-	  submissiondate: moment().format('YYYY-MM-DD'),
-	  status: 'null'
-	};
-
-	var updateStatus = function(item) {
-	  _store.status = item;
-	};
-
-	export default class Article {
-
-	    setFirstName(item){
-	      _store.firstname = item;
-	    }
-
-	    setLastName(item){
-	      _store.lastname = item;
-	    }
-
-	    setArticle(item) {
-	      _store.article = item;
-	    }
-
-	    setAbstract(item){
-	      _store.abstract = item;
-	    }
-
-	    setSubjects(item){
-	      _store.subjects = item;
-	    }
-	};
+	var moment = __webpack_require__(506);
+	var _store;
 
 	var ArticleStore = objectAssign({}, EventEmitter.prototype, {
-	  addChangeListener: function(cb){
+	  addChangeListener: function addChangeListener(cb) {
 	    this.on(CHANGE_EVENT, cb);
 	  },
-	  removeChangeListener: function(cb){
+	  removeChangeListener: function removeChangeListener(cb) {
 	    this.removeListener(CHANGE_EVENT, cb);
 	  },
-	  emitChange: function() {
+	  emitChange: function emitChange() {
 	    this.emit(CHANGE_EVENT);
 	  },
-	  getStatus: function(){
-	    return _store.status;
-	  },
-	  getArticleData: function() {
+	  getArticleData: function getArticleData() {
 	    return _store;
 	  }
 	});
 	//
-	AppDispatcher.register(function(payload){
+	AppDispatcher.register(function (payload) {
 	  var action = payload.action;
-	  switch(action.actionType){
-	    case appConstants.SAVE_CLICKED:  
+	  switch (action.actionType) {
+	    case appConstants.UPDATE_TABLE_DATA:
+	      _store = action.data;
 	      ArticleStore.emit(CHANGE_EVENT);
-	      break;
-	    case appConstants.STATUS:
-	      _store.status = action.data;
-	      break;
-	    case appConstants.FIRSTNAME:
-	      Article.setFirstName(action.data);
-	      break;
-	    case appConstants.LASTNAME:
-	      Article.setLastName(action.data);
-	      break;
-	    case appConstants.ABSTRACT:
-	      Article.setAbstract(action.data);
-	      break;
-	    case appConstants.ARTICLE:
-	      Article.setArticle(action.data);
-	      break;
-	    case appConstants.SUBJECTS:
-	      Article.setSubjects(action.data)
 	      break;
 	    default:
 	      return true;
 	  }
 	});
 	module.exports = ArticleStore;
-	******/
-	"use strict";
 
 /***/ },
 /* 626 */
@@ -113095,6 +113090,142 @@
 
 	// exports
 
+
+/***/ },
+/* 878 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(179);
+
+	__webpack_require__(621);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Actions = __webpack_require__(243);
+	var ArticleStore = __webpack_require__(625);
+
+	var TableView = function (_Component) {
+		_inherits(TableView, _Component);
+
+		function TableView() {
+			_classCallCheck(this, TableView);
+
+			var _this = _possibleConstructorReturn(this, (TableView.__proto__ || Object.getPrototypeOf(TableView)).call(this));
+
+			_this.state = {
+				tableContents: ArticleStore.getArticleData(),
+				mainView: _react2.default.createElement(
+					'div',
+					{ style: { display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+					_react2.default.createElement(
+						'p',
+						null,
+						'Waiting'
+					)
+				),
+				contentRecieved: false
+			};
+			return _this;
+		}
+
+		_createClass(TableView, [{
+			key: 'componentWillUnmount',
+			value: function componentWillUnmount() {
+				ArticleStore.removeChangeListener(this._onChange.bind(this));
+			}
+		}, {
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+
+				ArticleStore.addChangeListener(this._onChange.bind(this));
+				Actions.getTableContent();
+			}
+		}, {
+			key: '_onChange',
+			value: function _onChange() {
+				this.setState({
+					tableContents: ArticleStore.getArticleData(),
+					contentRecieved: true
+				});
+			}
+		}, {
+			key: 'componentDidUpdate',
+			value: function componentDidUpdate() {
+				if (this.state.contentRecieved == true) {
+					this.setState({
+						contentRecieved: false,
+						mainView: this.setTableView()
+					});
+				}
+			}
+		}, {
+			key: 'setTableView',
+			value: function setTableView() {
+				this.rows = [];
+				for (var x = 0; x < this.state.tableContents.length; x++) {
+					console.log(this.state.tableContents[x]);
+					var view = _react2.default.createElement(
+						'div',
+						{ className: 'table_row_parent', key: x, style: { height: 200 } },
+						_react2.default.createElement(
+							'p',
+							null,
+							this.state.tableContents[x].First_Name
+						),
+						_react2.default.createElement(
+							'p',
+							null,
+							this.state.tableContents[x].Last_Name
+						),
+						_react2.default.createElement(
+							'p',
+							null,
+							this.state.tableContents[x].Abstract
+						),
+						_react2.default.createElement(
+							'p',
+							null,
+							this.state.tableContents[x].Article
+						)
+					);
+					this.rows.push(view);
+				};
+
+				return _react2.default.createElement(
+					'div',
+					{ style: { flex: 1.0, alignItems: 'center', justifyContent: 'center' } },
+					this.rows
+				);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return this.state.mainView;
+			}
+		}]);
+
+		return TableView;
+	}(_react.Component);
+
+	exports.default = TableView;
 
 /***/ }
 /******/ ]);

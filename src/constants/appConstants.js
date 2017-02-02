@@ -5,7 +5,8 @@ var appConstants = {
   LASTNAME: "LASTNAME",
   SUBJECTS: "SUBJECTS",
   ABSTRACT: "ABSTRACT",
-  ARTICLE: "ARTICLE"
-
+  ARTICLE: "ARTICLE",
+  CLEAR_MESSAGE: "CLEAR_MESSAGE",
+  UPDATE_TABLE_DATA: "UPDATE_TABLE_DATA"
 };
 module.exports = appConstants;
