@@ -21,6 +21,7 @@ export default class Header extends Component {
 	    });
    	 }
 	render() {
+		
 	    return (
 	      <div style={{display: 'flex', height: 50, backgroundColor: 'black', alignItems: 'center' }}>
 	      	<Link to="/" style={{fontWeight: '900',fontFamily: 'Courier New',fontSize: 18,color: 'white', position: 'absolute', top: 15,left: 25, cursor: 'pointer', textDecoration: 'none'  }}>Node.js Boilerplate for Heroku Deployment</Link>	

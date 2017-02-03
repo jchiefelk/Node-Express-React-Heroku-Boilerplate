@@ -1,29 +1,52 @@
 #Title {
-	font-size: 6em;
+	font-size: 4.7em;
 	color: black;
-	font-weight: 700; 
+	font-weight: 900; 
 	font-family: 'Courier New';
 	text-decoration: 'none';
 	margin-top: 5;
 	align-text: center;
-	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	margin: 50;
 }
 
 #About-Me {
 
 	color: black;
-	font-size: 3em;
+	font-size: 2.1em;
 	font-weight: 700; 
 	font-family: 'Courier New';
 	text-decoration: 'none';
 	margin-top: 5;
-	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	
+}
+
+.paragraph {
+	color: black;
+	font-size: 1.5em;
+	font-weight: 400;
+	font-family: 'Courier New';
+	margin-top: 2em;
+	margin: 50;
 }
 
 .table_row_parent { 
-	
 	border-width: 2; 
 	border-style: solid; 
 	display: flex;
 	flex-direction: column;
 }
+
+.section-title {
+	margin: 50;
+	font-size: 2em;
+	font-weight: 900;
+	font-family: 'Courier New';
+	margin-top: 2em;
+}
+
+.code-image {
+	margin: 0;
+	width: 100;
+}
+
+
