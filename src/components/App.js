@@ -53,9 +53,12 @@ class App extends Component {
         return(
         	<div style={{alignItems: 'center'}}> 
         		<Header/>
+                    <div style={{position: 'absolute',top: 100}}>
 
-                    <div style={{position: 'absolute',top: 50}}>
-                            <p id="Title">Protecting from SQL Injection</p> 
+			        		<div style={{display: 'flex',alignItems: 'center', justifyContent: 'center'}}>
+			 					<p id="Title">Protecting from SQL Injection</p> 
+			 				</div>
+
                             <p className="paragraph">
                                 SQL injection is an old and popular attack strategy used by Hackers to get a website that uses SQL to dump the contents of the database.
                                 It is still common in 2017, even though as a developer it is rather straightforward to implement measures to protect against.  Many times a successful
@@ -87,7 +90,7 @@ class App extends Component {
 
                             <p className="paragraph">
                                 The above statement is a function that returns a promise. Take a look at the locally scoped variables sql and Insert. sql is used to predefine the SQL code.  The question marks
-                                '?', represent parameter input.  The Insert array contains the parameters that are passed to the SQL code when the promsise 'connect' is executed. 
+                                '?', represent parameter input.  The Insert array contains the parameters that are passed to the SQL code in place of the question marks, when the promsise 'connect' is executed. 
                             </p>
 
 
