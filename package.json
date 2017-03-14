@@ -1,8 +1,8 @@
 {
-  "name": "cointelmob",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.0",
     "react-scripts": "0.8.4"
   },
   "dependencies": {
